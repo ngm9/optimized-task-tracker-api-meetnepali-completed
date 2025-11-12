@@ -1,6 +1,42 @@
-target/
+# Version control
 .git/
-*.log
-*.md
+.gitignore
+.gitattributes
+
+# Build artifacts
+target/
+*.class
+*.jar
+*.war
+
+# IDE files
 .idea/
 .vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+
+# Documentation
+*.md
+docs/
+
+# Test files
+src/test/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Shell scripts (if not needed in container)
+*.sh
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore

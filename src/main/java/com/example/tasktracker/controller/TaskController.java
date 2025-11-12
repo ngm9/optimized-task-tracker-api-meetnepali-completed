@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -16,13 +17,15 @@ public class TaskController {
     public List<Task> list() {
         return taskService.getAll();
     }
+    
     @PostMapping("")
     public Task add(@RequestBody Task t) {
         return taskService.add(t);
     }
+    
     @GetMapping("/stats")
-    public Map<String, Object> stats() {
-        // Synchronously computes stats (inefficient; will be optimized to async)
+    public CompletableFuture<Map<String, Object>> stats() {
+        // Async stats calculation - non-blocking
         return taskService.calculateStats();
     }
 }

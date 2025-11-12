@@ -1,0 +1,28 @@
+package com.example.tasktracker.controller;
+import com.example.tasktracker.service.TaskService;
+import com.example.tasktracker.model.Task;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/tasks")
+public class TaskController {
+    @Autowired
+    private TaskService taskService;
+
+    @GetMapping("")
+    public List<Task> list() {
+        return taskService.getAll();
+    }
+    @PostMapping("")
+    public Task add(@RequestBody Task t) {
+        return taskService.add(t);
+    }
+    @GetMapping("/stats")
+    public Map<String, Object> stats() {
+        // Synchronously computes stats (inefficient; will be optimized to async)
+        return taskService.calculateStats();
+    }
+}

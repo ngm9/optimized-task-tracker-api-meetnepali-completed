@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: task-tracker-app
+    ports:
+      - "8080:8080"
+    # No resource limits or health checks present (basic inefficiency)
+    volumes:
+      - /root/task/data:/data
+    restart: always
+networks:
+  default:
+    driver: bridge
